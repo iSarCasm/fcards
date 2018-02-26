@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       get :repeat
     end
 
-    resources :cards, only: [:show] do
+    resources :cards, only: [:show, :new, :create] do
       member do
         get :answer
         post :right

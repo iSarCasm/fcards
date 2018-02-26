@@ -12,13 +12,13 @@ class DecksController < ApplicationController
   end
 
   def create
-    Deck.create(deck_params)
+    Deck.create! deck_params
     redirect_to decks_path
   end
 
   def repeat
     random_card = find_deck.cards.to_a.shuffle.first
-    redirect_to deck_card_url(random_card)
+    redirect_to deck_card_path(find_deck, random_card)
   end
 
   private 

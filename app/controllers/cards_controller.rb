@@ -3,6 +3,17 @@ class CardsController < ApplicationController
     @card = find_card
   end
 
+  def new
+    @card = deck.cards.new
+  end
+
+  def create
+    card = deck.cards.new card_params
+    card.order_number = deck.cards.order(:order_number).last&.order_number.to_i + 1
+    card.save!
+    redirect_to deck_path(deck)
+  end
+
   def answer
     @card = find_card
   end
@@ -24,6 +35,14 @@ class CardsController < ApplicationController
   end
 
   private
+
+  def card_params
+    params.require(:card).permit(:question, :answer)
+  end
+
+  def deck
+    Deck.find(params[:deck_id])
+  end
 
   def find_card
     Card.find(params[:id])
