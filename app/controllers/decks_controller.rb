@@ -7,12 +7,25 @@ class DecksController < ApplicationController
     @deck = find_deck
   end
 
+  def new
+    @deck = Deck.new
+  end
+
+  def create
+    Deck.create(deck_params)
+    redirect_to decks_path
+  end
+
   def repeat
     random_card = find_deck.cards.to_a.shuffle.first
     redirect_to deck_card_url(random_card)
   end
 
   private 
+
+  def deck_params
+    params.require(:deck).permit(:title)
+  end
 
   def find_deck
     Deck.find(params[:id])

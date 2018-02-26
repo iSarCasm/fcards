@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'decks#index'
   
-  resources :decks, only: [:index, :show] do
+  resources :decks, only: [:index, :show, :new, :create] do
     member do
       get :repeat
     end
