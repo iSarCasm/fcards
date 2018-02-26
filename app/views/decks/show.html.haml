@@ -1,0 +1,7 @@
+%h2= @deck.title
+%h3
+  This deck containts
+  %strong= @deck.cards.count
+  cards.
+%h4
+  = link_to 'Repeat', repeat_deck_path(@deck)

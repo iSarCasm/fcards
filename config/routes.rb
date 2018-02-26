@@ -1,3 +1,18 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root 'decks#index'
+  
+  resources :decks, only: [:index, :show] do
+    member do
+      get :repeat
+    end
+
+    resources :cards, only: [:show] do
+      member do
+        get :answer
+        post :right
+        post :wrong
+        post :next
+      end
+    end
+  end
 end

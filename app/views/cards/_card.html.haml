@@ -1,0 +1,7 @@
+.card
+  .card-header
+    = card.deck.title
+  .card-body
+    %h5.card-title
+      = card.question
+    = link_to 'Show Answer', answer_deck_card_path(card), class: 'btn btn-primary'
