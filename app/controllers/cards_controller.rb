@@ -27,8 +27,7 @@ class CardsController < ApplicationController
   end
 
   def next
-    random_card_id = 1 + rand(find_card.deck.cards.count)
-    random_card = find_card.deck.cards.find(random_card_id)
+    random_card = find_card.deck.cards.to_a.shuffle.first
     redirect_to deck_card_url(random_card.deck, random_card)
   end
 

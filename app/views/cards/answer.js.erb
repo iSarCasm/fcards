@@ -1,3 +1,6 @@
 $('#show-answer').hide();
 $('#card-responses').show();
-$('#card-answer').text('<%= @answer %>');
+
+var card_answer = document.getElementById('card-answer');
+card_answer.innerHTML = '<%= escape_javascript @answer.html_safe %>';
+MathJax.Hub.Queue(["Typeset", MathJax.Hub, card_answer]);
