@@ -19,14 +19,11 @@ class CardsController < ApplicationController
   end
 
   def right
-    render 'cards/response'
+    random_card = find_card.deck.cards.to_a.shuffle.first
+    redirect_to deck_card_url(random_card.deck, random_card)
   end
 
   def wrong
-    render 'cards/response'
-  end
-
-  def next
     random_card = find_card.deck.cards.to_a.shuffle.first
     redirect_to deck_card_url(random_card.deck, random_card)
   end

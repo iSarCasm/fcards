@@ -1,17 +1,14 @@
-.card
+.card.text-center
   .card-header
-    = card.deck.title
-  .card-body
-    %h5.card-title
-      = card.question
+    = card.question
+  .card-body{style: 'min-height: 125px;'}
     %p.card-text#card-text
       %span#card-answer
-      %div#card-responses{style: 'display:none;'}
-        .inline-block
-          = button_to 'Right', { action: :right }, { class: 'btn btn-success', remote: true }
-        .inline-block
-          = button_to 'Wrong', { action: :wrong }, { class: 'btn btn-danger', remote: true }
-      %div#card-next{style: 'display:none;'}
-        .inline-block
-          = button_to 'Next', { action: :next }, { class: 'btn btn-info' }
+  
+  .card-footer
     = link_to 'Show Answer', answer_deck_card_path(card), remote: true, id: 'show-answer', class: 'btn btn-primary'
+    %div#card-responses{style: 'display:none;'}
+      .inline-block
+        = button_to 'Right', { action: :right }, { class: 'btn btn-success' }
+      .inline-block
+        = button_to 'Wrong', { action: :wrong }, { class: 'btn btn-danger' }
