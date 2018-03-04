@@ -1,7 +1,56 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+Deck.create!([
+  {deck_title: "JavaScript", deck_id: nil},
+  {deck_title: "Patterns", deck_id: 1},
+  {deck_title: "Machine Learning", deck_id: nil}
+])
+
+Card.create!([
+  {deck_id: 2, order_number: nil, question: "What does AMD stand for?", answer: "Async Module Definitions"},
+  {deck_id: 2, order_number: nil, question: "name Behavioral JS Patterns", answer: "Observer, Mediator, Command, Observable Property, Async Execution, Recursive setTimeout"},
+  {deck_id: 2, order_number: nil, question: "What are the main Structural Patterns in JS?", answer: "Facade, Flyweight"},
+  {deck_id: 2, order_number: nil, question: "What are the main Creational Patterns in JS?", answer: "Constructor pattern (this function; prototype), Module Pattern, Singleton Pattern"},
+  {deck_id: 3, order_number: nil, question: "Usage for Machine Learning?", answer: "Applications cant program by hand"},
+  {deck_id: 3, order_number: nil, question: "Examples of Database mining?", answer: "Making sense of web-click data, medical records"},
+  {deck_id: 3, order_number: nil, question: "Making sense of web-click data is about?", answer: "Data Mining"},
+  {deck_id: 3, order_number: nil, question: "Making sense of medical records is about?", answer: "Data Mining"},
+  {deck_id: 3, order_number: nil, question: "Amazon/Netflix recommendations is an example of?", answer: "Self-customizing programs"},
+  {deck_id: 3, order_number: nil, question: "Field of study that gives computers the ability to learn without being explicitly programmed?", answer: "Machine Learning"},
+  {deck_id: 3, order_number: nil, question: "A computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performance on T, measured by P, improves with experience E?", answer: "Well-posed Learning Problem"},
+  {deck_id: 3, order_number: nil, question: "What is Machine Learning?", answer: "Field of study that gives computers the ability to learn without being explicitly programmed"},
+  {deck_id: 3, order_number: nil, question: "What is Well-posed Learning Problem?", answer: "A computer program is said to learn from experience E with respect to some task T and some performance measure P, if its performance on T, measured by P, improves with experience E"},
+  {deck_id: 3, order_number: nil, question: "Two broad classifications in ML?", answer: "Supervised Learning - Unsupervised Learning"},
+  {deck_id: 3, order_number: nil, question: "What problems Supervised Learning solves?", answer: "Given the data to learn on - can we predict the future results?"},
+  {deck_id: 3, order_number: nil, question: "What problems Unsupervised Learning solves?", answer: "Given a dataset - can we find some structure?"},
+  {deck_id: 3, order_number: nil, question: "The ML Problems?", answer: "Regression, Classification, Clustering"},
+  {deck_id: 3, order_number: nil, question: "Regression?", answer: "Predict continuous value output"},
+  {deck_id: 3, order_number: nil, question: "Classification?", answer: "Predict discrete value output"},
+  {deck_id: 3, order_number: nil, question: "Clustering?", answer: "Grouping the set of inputs together"},
+  {deck_id: 3, order_number: nil, question: "To what ML Problems corresponds - Price Prediction?", answer: "Regression"},
+  {deck_id: 3, order_number: nil, question: "In Regression problem what does m stand for?", answer: "Number of training examples"},
+  {deck_id: 3, order_number: nil, question: "In Regression problem what does x stand for?", answer: "Input feature"},
+  {deck_id: 3, order_number: nil, question: "In Regression problem what does y stand for?", answer: "Output variable"},
+  {deck_id: 3, order_number: nil, question: "In Regression problem what does h stand for?", answer: "Hypothesis function"},
+  {deck_id: 3, order_number: nil, question: "Examples for Regression Application?", answer: "Price prediction"},
+  {deck_id: 3, order_number: nil, question: "Possible causes form Normal Equation Non-Invertability?", answer: "1) Redundant features with linear dependency\r\n<br>\r\n2) Too many features $m <= n$"},
+  {deck_id: 3, order_number: nil, question: "What is Feature Scaling?", answer: "Modifying input values to make them in range\r\n-1 ≤ $x_{(i)}$ ≤ 1"},
+  {deck_id: 3, order_number: nil, question: "Univariative linear regression formula?", answer: "$$h(x) = \\theta_0 + \\theta_1 x$$  \r\n"},
+  {deck_id: 3, order_number: nil, question: "Purpose of cost function?", answer: "Estimate correctness of our hypothesis function"},
+  {deck_id: 3, order_number: nil, question: "Squared error cost function?", answer: "$$J(\\theta_0, \\theta_1) = \\dfrac {1}{2m} \\displaystyle \\sum _{i=1}^m \\left ( \\hat{y}_{i}- y_{i} \\right)^2 = \\dfrac {1}{2m} \\displaystyle \\sum _{i=1}^m \\left (h_\\theta (x_{i}) - y_{i} \\right)^2$$"},
+  {deck_id: 3, order_number: nil, question: "How we choose parameters for linear regression?", answer: "In order to minimize the difference between hypothesis and real value"},
+  {deck_id: 3, order_number: nil, question: "What is Gradient Descent?", answer: "Minimization Algorithm"},
+  {deck_id: 3, order_number: nil, question: "What does \"Batch Gradient Descent\" mean?", answer: "All training examples are analyzed on each step"},
+  {deck_id: 3, order_number: nil, question: "How does Gradient Descent Algorithm look like?", answer: "$$\\begin{align*}& \\text{repeat until convergence:} \\; \\lbrace \\newline \\; & \\theta_j := \\theta_j - \\alpha \\frac{1}{m} \\sum\\limits_{i=1}^{m} (h_\\theta(x^{(i)}) - y^{(i)}) \\cdot x_j^{(i)} \\; & \\text{for j := 0...n}\\newline \\rbrace\\end{align*}$$"},
+  {deck_id: 3, order_number: nil, question: "What happens if learning rate of Gradient Descent is too small?", answer: "It might take a lot of steps before convergence"},
+  {deck_id: 3, order_number: nil, question: "What happens if learning rate of Gradient Descent is too big?", answer: "It may fail to converge, or even diverge"},
+  {deck_id: 3, order_number: nil, question: "Can Gradient Descent converge with fixed learning rate?", answer: "Yes"},
+  {deck_id: 3, order_number: nil, question: "Why Gradient Descent converges with fixed learning rate?", answer: "Because derivative is changing as we approach the minimum"},
+  {deck_id: 3, order_number: nil, question: "What is Mean Normalization?", answer: "Moving average value to 0."},
+  {deck_id: 3, order_number: nil, question: "Mean Normalization + Feature Scaling formula?", answer: "$$x_i := \\dfrac{x_i - \\mu_i}{s_i}$$"},
+  {deck_id: 3, order_number: nil, question: "In linear regression $h(x)$ can only be linear function?", answer: "No. It can be polynomial."},
+  {deck_id: 3, order_number: nil, question: "Quadratic Polynomial Regression?\r\n", answer: "$$h_\\theta(x) = \\theta_0 + \\theta_1 x_1 + \\theta_2 x_1^2 + \\theta_3 x_1^3$$"},
+  {deck_id: 3, order_number: nil, question: "What is an alternative to Gradient Descent?", answer: "Normal Equation"},
+  {deck_id: 3, order_number: nil, question: "Advantage of Normal Equation?", answer: "No iterations needed"},
+  {deck_id: 3, order_number: nil, question: "Normal Equation Complexity?", answer: "$$O(n^3)$$"},
+  {deck_id: 3, order_number: nil, question: "Normal Equation Formula?", answer: "$$\\theta = (X^T X)^{-1}X^T y$$"},
+  {deck_id: 3, order_number: nil, question: "Gradient Descent Complexity?", answer: "$$O(k n^2)$$"}
+])
