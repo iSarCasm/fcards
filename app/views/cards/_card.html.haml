@@ -4,4 +4,14 @@
   .card-body
     %h5.card-title
       = card.question
-    = link_to 'Show Answer', answer_deck_card_path(card), class: 'btn btn-primary'
+    %p.card-text#card-text
+      %span#card-answer
+      %div#card-responses{style: 'display:none;'}
+        .inline-block
+          = button_to 'Right', { action: :right }, { class: 'btn btn-success', remote: true }
+        .inline-block
+          = button_to 'Wrong', { action: :wrong }, { class: 'btn btn-danger', remote: true }
+      %div#card-next{style: 'display:none;'}
+        .inline-block
+          = button_to 'Next', { action: :next }, { class: 'btn btn-info' }
+    = link_to 'Show Answer', answer_deck_card_path(card), remote: true, id: 'show-answer', class: 'btn btn-primary'

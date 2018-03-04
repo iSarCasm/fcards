@@ -15,17 +15,15 @@ class CardsController < ApplicationController
   end
 
   def answer
-    @card = find_card
+    @answer = find_card.answer
   end
 
   def right
-    @card = find_card
-    render 'cards/responded', locals: { card: @card }
+    render 'cards/response'
   end
 
   def wrong
-    @card = find_card
-    render 'cards/responded', locals: { card: @card }
+    render 'cards/response'
   end
 
   def next
