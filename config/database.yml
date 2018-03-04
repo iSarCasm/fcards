@@ -15,7 +15,6 @@
 # gem 'pg'
 #
 default: &default
-  username: postgres
   adapter: postgresql
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
@@ -24,6 +23,7 @@ default: &default
 
 development:
   <<: *default
+  username: postgres  
   database: fcards_development
 
   # The specified database role being used to connect to postgres.
@@ -58,6 +58,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  username: postgres  
   database: fcards_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
