@@ -7,14 +7,14 @@
   
   .card-footer
     .row
-      .col
-      .col.text-center
+      .col-sm
+      .col-9.text-center
         = link_to 'Show Answer', answer_deck_card_path(card), remote: true, id: 'show-answer', class: 'btn btn-primary'
         %div#card-responses{style: 'display:none;'}
           .inline-block
             = button_to 'Right', { action: :right }, { class: 'btn btn-success' }
           .inline-block
             = button_to 'Wrong', { action: :wrong }, { class: 'btn btn-danger' }
-      .col.text-right
+      .col-3.col-sm.text-right
         .inline-block
           = link_to 'Edit', rails_admin.edit_path(model_name: card.class, id: card.id), class: 'btn btn-secondary', target: 'blank'
