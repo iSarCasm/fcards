@@ -1,14 +1,20 @@
-.card.text-center
-  .card-header
+.card
+  .card-header.text-center
     = card.question
-  .card-body{style: 'min-height: 125px;'}
+  .card-body.text-center{style: 'min-height: 125px;'}
     %p.card-text#card-text
       %span#card-answer
   
   .card-footer
-    = link_to 'Show Answer', answer_deck_card_path(card), remote: true, id: 'show-answer', class: 'btn btn-primary'
-    %div#card-responses{style: 'display:none;'}
-      .inline-block
-        = button_to 'Right', { action: :right }, { class: 'btn btn-success' }
-      .inline-block
-        = button_to 'Wrong', { action: :wrong }, { class: 'btn btn-danger' }
+    .row
+      .col
+      .col.text-center
+        = link_to 'Show Answer', answer_deck_card_path(card), remote: true, id: 'show-answer', class: 'btn btn-primary'
+        %div#card-responses{style: 'display:none;'}
+          .inline-block
+            = button_to 'Right', { action: :right }, { class: 'btn btn-success' }
+          .inline-block
+            = button_to 'Wrong', { action: :wrong }, { class: 'btn btn-danger' }
+      .col.text-right
+        .inline-block
+          = link_to 'Edit', rails_admin.edit_path(model_name: card.class, id: card.id), class: 'btn btn-secondary', target: 'blank'
