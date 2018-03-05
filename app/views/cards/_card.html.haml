@@ -1,6 +1,10 @@
+:javascript
+  var card_question = document.getElementById('card-question');
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub, card_question]);
+
 .card
   .card-header.text-center
-    = card.question
+    .span#card-question= card.question
   .card-body.text-center{style: 'min-height: 125px;'}
     %p.card-text#card-text
       %span#card-answer
