@@ -17,7 +17,9 @@
           "HTML-CSS": { linebreaks: { automatic: true } },
           SVG: { linebreaks: { automatic: true } }
         });
-    %script{src: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'}    
+    %script{src: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'}
+    = javascript_include_tag 'ascii_math'
   %body
+    `sum_(i=1)^n i^3=((n(n+1))/2)^2`
     .container.mt-5.pt-5
       = yield
