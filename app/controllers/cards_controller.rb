@@ -7,11 +7,21 @@ class CardsController < ApplicationController
     @card = deck.cards.new
   end
 
+  def edit
+    @card = find_card
+  end
+
   def create
     card = deck.cards.new card_params
     card.order_number = deck.cards.order(:order_number).last&.order_number.to_i + 1
     card.save!
     redirect_to deck_path(deck)
+  end
+
+  def update
+    card = find_card
+    card.update(card_params)
+    redirect_to deck_card_url(card.deck, card)
   end
 
   def answer
@@ -39,6 +49,6 @@ class CardsController < ApplicationController
   end
 
   def find_card
-    Card.find(params[:id])
+    deck.cards.find(params[:id])
   end
 end

@@ -1,0 +1,15 @@
+= form_for card, url: url do |f|
+  .form-group
+    = f.label :question
+    = f.text_area :question, class: 'form-control'
+  .form-group
+    = f.label :answer
+    = f.text_area :answer, class: 'form-control'
+  = f.submit class: 'btn btn-primary mb-2'
+
+%h3 Preview
+.card
+  .card-header.text-center
+    .span#card-question
+  .card-body.text-center{style: 'min-height: 125px;'}
+    %p.card-text#card-text
