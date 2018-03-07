@@ -2,3 +2,14 @@
 %br
 - @decks.each do |deck|
   = link_to deck.title, deck
+
+%h3 Statistics
+%table.table.table-sm{style: 'max-width: 300px;'}
+  %thead
+    %th Date
+    %th New Cards
+  %tbody
+    - @stats.each do |day|
+      %tr
+        %td= day.day
+        %td= day.cards

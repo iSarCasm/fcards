@@ -1,6 +1,7 @@
 class DecksController < ApplicationController
   def index
     @decks = Deck.high_order
+    @stats = Stats.per_day
   end
 
   def show

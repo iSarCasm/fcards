@@ -32,5 +32,7 @@ module Fcards
       g.javascripts false
       g.helper      false
     end
+
+    config.eager_load_paths << Rails.root.join('lib')
   end
 end
