@@ -12,8 +12,8 @@ function updateCard() {
   if($('#card_question').val() !== question || $('#card_answer').val() !== answer) {
     question = $('#card_question').val();
     answer = $('#card_answer').val();
-    $('#card-question').text(question);
-    $('#card-text').text(answer);
+    $('#card-question').html(question);
+    $('#card-text').html(answer);
     refreshMath();
   }
 }
