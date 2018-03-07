@@ -1,11 +1,8 @@
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
   $('#card_question').on('keydown', function(event) { updateCard() });
   $('#card_question').on('keyup', function(event) { updateCard() });
   $('#card_answer').on('keydown', function(event) { updateCard() });
   $('#card_answer').on('keyup', function(event) { updateCard() });
-})
-
-$(document).on('turbolinks:load', function() {
   updateCard();
 })
 
