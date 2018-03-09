@@ -29,13 +29,27 @@ class CardsController < ApplicationController
   end
 
   def right
-    random_card = find_card.deck.cards.to_a.shuffle.first
-    redirect_to deck_card_url(random_card.deck, random_card)
+    repeat_session = RepeatSession.new(data_hash: session[:repeat_session])
+    repeat_session.add_correct_answer(find_card)
+    session[:repeat_session] = repeat_session.to_h
+    random_card = repeat_session.random_card
+    if random_card
+      redirect_to deck_card_path(deck, random_card)
+    else
+      redirect_to repeat_session_finished_deck_path(deck)
+    end
   end
 
   def wrong
-    random_card = find_card.deck.cards.to_a.shuffle.first
-    redirect_to deck_card_url(random_card.deck, random_card)
+    repeat_session = RepeatSession.new(data_hash: session[:repeat_session])
+    repeat_session.add_wrong_answer(find_card)
+    session[:repeat_session] = repeat_session.to_h
+    random_card = repeat_session.random_card
+    if random_card
+      redirect_to deck_card_path(deck, random_card)
+    else
+      redirect_to repeat_session_finished_deck_path(deck)
+    end
   end
 
   private

@@ -18,8 +18,13 @@ class DecksController < ApplicationController
   end
 
   def repeat
-    random_card = find_deck.cards.to_a.shuffle.first
+    repeat_session = RepeatSession.new(deck: find_deck)
+    session[:repeat_session] = repeat_session.to_h
+    random_card = repeat_session.random_card
     redirect_to deck_card_path(find_deck, random_card)
+  end
+
+  def repeat_session_finished
   end
 
   private 

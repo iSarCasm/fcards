@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :decks, only: [:index, :show, :new, :create] do
     member do
       get :repeat
+      get :repeat_session_finished
     end
 
     resources :cards, only: [:show, :new, :edit, :create, :update] do
