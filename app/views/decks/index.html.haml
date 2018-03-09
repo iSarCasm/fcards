@@ -1,15 +1,29 @@
-= link_to 'New Deck', new_deck_path
-%br
-- @decks.each do |deck|
-  = link_to deck.title, deck
+.section.mb-5
+  %h3 Your decks
+  %ul
+    - @decks.each do |deck|
+      %li
+        = link_to deck.title, deck
+        %small
+          %a{href: "#card-list-#{deck.id}", data: {toggle: 'collapse'}, role: 'button', 'aria-expanded' => 'false', 'aria-controls' => "card-list-#{deck.id}"}
+            (#{deck.cards.count} cards)
+        
+        %ol.collapse{id: "card-list-#{deck.id}"}
+          - deck.cards.each do |card|
+            %li
+              =link_to card.question, deck_card_path(deck, card)
+    
+    = link_to 'New Deck', new_deck_path
 
-%h3 Statistics
-%table.table.table-sm{style: 'max-width: 300px;'}
-  %thead
-    %th Date
-    %th New Cards
-  %tbody
-    - @stats.each do |day|
-      %tr
-        %td= day.day
-        %td= day.cards
+
+.section
+  %h3 Statistics
+  %table.table.table-sm{style: 'max-width: 300px;'}
+    %thead
+      %th Date
+      %th New Cards
+    %tbody
+      - @stats.each do |day|
+        %tr
+          %td= day.day
+          %td= day.cards
