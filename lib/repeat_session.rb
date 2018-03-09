@@ -1,12 +1,15 @@
 class RepeatSession
-  attr_reader :wrong_answers, :correct_answers, :deck_id
+  attr_reader :wrong_answers, :correct_answers, :all_answers, :deck_id
   
   def initialize(deck: nil, data_hash: nil)
-    @wrong_answers = []
-    @correct_answers = []
-    @deck_id = deck.id if deck
-
-    init_from_hash(data_hash) if data_hash
+    if data_hash
+      init_from_hash(data_hash)
+    else
+      @wrong_answers = []
+      @correct_answers = []
+      @deck_id = deck.id
+      @all_answers = deck.cards.count
+    end
   end
 
   def random_card
@@ -22,11 +25,12 @@ class RepeatSession
   end
 
   def add_correct_answer(card)
-    @correct_answers << card.id
+    @correct_answers << card.id unless correct_answers.include? card.id
+    @wrong_answers.delete(card.id) if @wrong_answers.include? card.id
   end
 
   def add_wrong_answer(card)
-    @wrong_answers << card.id
+    @wrong_answers << card.id unless wrong_answers.include? card.id
   end
 
   def deck
@@ -35,6 +39,7 @@ class RepeatSession
 
   def init_from_hash(data_hash)
     @deck_id = data_hash['deck_id']
+    @all_answers = data_hash['all_answers']
     @wrong_answers = data_hash['wrong_answers'] || []
     @correct_answers = data_hash['correct_answers'] || []
   end
@@ -43,7 +48,8 @@ class RepeatSession
     { 
       'wrong_answers' => wrong_answers,
       'correct_answers' => correct_answers,
-      'deck_id' => deck_id      
+      'deck_id' => deck_id,
+      'all_answers' => all_answers
     }
   end
 end
