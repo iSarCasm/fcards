@@ -7,3 +7,8 @@
     = link_to 'Add card', new_deck_card_path(@deck)
 %h4
   = link_to 'Repeat', repeat_deck_path(@deck)
+
+%ol
+  - @deck.cards.each do |card|
+    %li
+      =link_to card.question, deck_card_path(@deck, card)
