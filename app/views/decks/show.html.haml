@@ -5,8 +5,15 @@
   cards.
   %small
     = link_to 'Add card', new_deck_card_path(@deck)
-%h4
-  = link_to 'Repeat', repeat_deck_path(@deck)
+
+.row.mb-4
+  .col-sm-4
+    %h4= link_to 'Repeat Distributed', repeat_distributed_deck_path(@deck)
+  .col-sm-4
+    %h4= link_to 'Repeat Random', repeat_random_deck_path(@deck)
+  .col-sm-4
+    %h4= link_to 'Repeat Orderly', repeat_orderly_deck_path(@deck)
+  
 
 %ol
   - @deck.cards.each do |card|

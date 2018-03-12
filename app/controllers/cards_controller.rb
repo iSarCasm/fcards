@@ -29,10 +29,13 @@ class CardsController < ApplicationController
   end
 
   def right
-    repeat_session = RepeatSession.new(data_hash: session[:repeat_session])
+    repeat_session = RepeatSession.from(data_hash: session[:repeat_session])
     repeat_session.add_correct_answer(find_card)
     session[:repeat_session] = repeat_session.to_h
     random_card = repeat_session.random_card
+
+    find_card.update(priority: find_card.priority + 1)
+
     if random_card
       redirect_to deck_card_path(deck, random_card)
     else
@@ -41,7 +44,7 @@ class CardsController < ApplicationController
   end
 
   def wrong
-    repeat_session = RepeatSession.new(data_hash: session[:repeat_session])
+    repeat_session = RepeatSession.from(data_hash: session[:repeat_session])
     repeat_session.add_wrong_answer(find_card)
     session[:repeat_session] = repeat_session.to_h
     random_card = repeat_session.random_card
