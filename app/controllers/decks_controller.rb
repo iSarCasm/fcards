@@ -20,22 +20,22 @@ class DecksController < ApplicationController
   def repeat_distributed
     repeat_session = RepeatSession::Distributed.new(deck: find_deck)
     session[:repeat_session] = repeat_session.to_h
-    random_card = repeat_session.random_card
-    redirect_to deck_card_path(find_deck, random_card)
+    next_card = repeat_session.next_card
+    redirect_to deck_card_path(find_deck, next_card)
   end
 
   def repeat_random
     repeat_session = RepeatSession::Random.new(deck: find_deck)
     session[:repeat_session] = repeat_session.to_h
-    random_card = repeat_session.random_card
-    redirect_to deck_card_path(find_deck, random_card)
+    next_card = repeat_session.next_card
+    redirect_to deck_card_path(find_deck, next_card)
   end
 
   def repeat_orderly
     repeat_session = RepeatSession::Orderly.new(deck: find_deck)
     session[:repeat_session] = repeat_session.to_h
-    random_card = repeat_session.random_card
-    redirect_to deck_card_path(find_deck, random_card)
+    next_card = repeat_session.next_card
+    redirect_to deck_card_path(find_deck, next_card)
   end
 
   def repeat_session_finished

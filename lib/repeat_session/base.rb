@@ -1,18 +1,19 @@
 class RepeatSession::Base
-  attr_reader :wrong_answers, :correct_answers, :all_answers, :deck_id
+  attr_reader :wrong_answers, :correct_answers, :all_answers, :deck_id, :current_card_pool
   
-  def initialize(deck: nil, data_hash: nil)
+  def initialize(deck: nil, questions: 20, data_hash: nil)
     if data_hash
       init_from_hash(data_hash)
     else
       @wrong_answers = []
       @correct_answers = []
       @deck_id = deck.id
-      @all_answers = deck.cards.count
+      @all_answers = questions
+      init_card_pool
     end
   end
 
-  def random_card
+  def next_card
     raise 'Not Implemented'
   end
 
@@ -20,13 +21,17 @@ class RepeatSession::Base
     correct_answers.include? card.id
   end
 
+  def already_answered_wrongly?(card)
+    wrong_answers.include? card.id
+  end
+
   def add_correct_answer(card)
     @correct_answers << card.id unless correct_answers.include? card.id
-    @wrong_answers.delete(card.id) if @wrong_answers.include? card.id
+    @wrong_answers.delete(card.id) if already_answered_correctly?(card)
   end
 
   def add_wrong_answer(card)
-    @wrong_answers << card.id unless wrong_answers.include? card.id
+    @wrong_answers << card.id unless already_answered_wrongly?(card)
   end
 
   def deck
@@ -52,11 +57,15 @@ class RepeatSession::Base
 
   protected
 
+  def init_card_pool
+    @current_card_pool = deck.cards.limit(all_answers)
+  end
+
   def card_pool
     if correct_answers.empty?
-      deck.cards
+      current_card_pool
     else
-      deck.cards.where.not(id: correct_answers)
+      current_card_pool.where.not(id: correct_answers)
     end
   end
 end
