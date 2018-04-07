@@ -13,6 +13,10 @@
     %h4= link_to 'Repeat Random', repeat_random_deck_path(@deck)
   .col-sm-4
     %h4= link_to 'Repeat Orderly', repeat_orderly_deck_path(@deck)
+
+.row.mb-4
+  .col-sm-4
+    %h4= link_to 'Practice!', new_repeat_session_path(deck: @deck)
   
 
 %ol

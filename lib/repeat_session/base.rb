@@ -43,6 +43,7 @@ class RepeatSession::Base
     @all_answers = data_hash['all_answers']
     @wrong_answers = data_hash['wrong_answers'] || []
     @correct_answers = data_hash['correct_answers'] || []
+    @current_card_pool = Card.where(id: (data_hash['current_card_pool'] || [])) 
   end
 
   def to_h
@@ -51,7 +52,8 @@ class RepeatSession::Base
       'correct_answers' => correct_answers,
       'deck_id' => deck_id,
       'all_answers' => all_answers,
-      'type' => self.class.to_s.split('::').last.downcase
+      'type' => self.class.to_s.split('::').last.downcase,
+      'current_card_pool' => current_card_pool.to_a.map(&:id)
     }
   end
 

@@ -6,4 +6,12 @@ module RepeatSession
     when 'random'       then RepeatSession::Random.new(data_hash: data_hash)
     end
   end
+
+  def self.create(type, params)
+    case type
+    when 'distributed'  then RepeatSession::Distributed.new(params)
+    when 'orderly'      then RepeatSession::Orderly.new(params)
+    when 'random'       then RepeatSession::Random.new(params)
+    end
+  end
 end
