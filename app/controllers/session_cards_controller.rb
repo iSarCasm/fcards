@@ -30,6 +30,8 @@ class SessionCardsController < ApplicationController
     session[:repeat_session] = current_session.to_h
     next_card = current_session.next_card
 
+    find_card.update(priority: find_card.priority / 2)
+
     if next_card
       redirect_to repeat_session_card_path(next_card)
     else
