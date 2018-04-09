@@ -28,10 +28,13 @@ class RepeatSession::Base
   def add_correct_answer(card)
     @correct_answers << card.id unless correct_answers.include? card.id
     @wrong_answers.delete(card.id) if already_answered_correctly?(card)
+    @current_card_pool.delete card.id
   end
 
   def add_wrong_answer(card)
     @wrong_answers << card.id unless already_answered_wrongly?(card)
+    @current_card_pool.delete card.id
+    @current_card_pool << card.id # move to back
   end
 
   def deck
@@ -43,7 +46,7 @@ class RepeatSession::Base
     @all_answers = data_hash['all_answers']
     @wrong_answers = data_hash['wrong_answers'] || []
     @correct_answers = data_hash['correct_answers'] || []
-    @current_card_pool = Card.where(id: (data_hash['current_card_pool'] || [])) 
+    @current_card_pool = data_hash['current_card_pool'] || []
   end
 
   def to_h
@@ -53,21 +56,17 @@ class RepeatSession::Base
       'deck_id' => deck_id,
       'all_answers' => all_answers,
       'type' => self.class.to_s.split('::').last.downcase,
-      'current_card_pool' => current_card_pool.to_a.map(&:id)
+      'current_card_pool' => current_card_pool
     }
   end
 
   protected
 
   def init_card_pool
-    @current_card_pool = deck.cards.limit(all_answers)
+    @current_card_pool = deck.cards.limit(all_answers).map(&:id)
   end
 
   def card_pool
-    if correct_answers.empty?
-      current_card_pool
-    else
-      current_card_pool.where.not(id: correct_answers)
-    end
+    Card.where(id: current_card_pool)
   end
 end

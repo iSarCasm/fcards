@@ -1,7 +1,10 @@
 = form_tag repeat_session_url do
   = label_tag :type
-  = text_field_tag :type
+  = select_tag :type, "<option>distributed</option><option>random</option><option>orderly</option>".html_safe
+
   = label_tag :questions
   = text_field_tag :questions
+
   = hidden_field_tag :deck, @deck.id
+
   = submit_tag 'Start'

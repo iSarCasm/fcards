@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
 
   resource :repeat_session, only: [:new, :create] do
+    get :finished
     resources :cards, only: [:show, :destroy], controller: 'session_cards' do
       member do
         get :answer

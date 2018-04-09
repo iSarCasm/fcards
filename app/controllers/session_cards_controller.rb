@@ -19,9 +19,9 @@ class SessionCardsController < ApplicationController
     find_card.update(priority: find_card.priority + 1)
 
     if next_card
-      redirect_to deck_card_path(deck, next_card)
+      redirect_to repeat_session_card_path(next_card)
     else
-      redirect_to repeat_session_finished_deck_path(deck)
+      redirect_to finished_repeat_session_path
     end
   end
 
@@ -29,10 +29,11 @@ class SessionCardsController < ApplicationController
     current_session.add_wrong_answer(find_card)
     session[:repeat_session] = current_session.to_h
     next_card = current_session.next_card
+
     if next_card
-      redirect_to deck_card_path(deck, next_card)
+      redirect_to repeat_session_card_path(next_card)
     else
-      redirect_to repeat_session_finished_deck_path(deck)
+      redirect_to finished_repeat_session_path
     end
   end
 
