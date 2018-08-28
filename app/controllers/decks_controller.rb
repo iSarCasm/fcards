@@ -41,7 +41,7 @@ class DecksController < ApplicationController
   def repeat_session_finished
   end
 
-  private 
+  private
 
   def deck_params
     params.require(:deck).permit(:deck_title)
