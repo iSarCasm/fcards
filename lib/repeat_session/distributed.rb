@@ -1,6 +1,6 @@
 class RepeatSession::Distributed < RepeatSession::Base
   def init_card_pool
-    @current_card_pool = deck.cards.order(priority: :asc).limit(all_answers).map(&:id)
+    @current_card_pool = Card.where(deck_id: deck_ids).order(priority: :asc).limit(all_answers).pluck(:id)
   end
 
   def next_card

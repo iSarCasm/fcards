@@ -24,7 +24,6 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'rails_admin'
 gem 'seed_dump'
 
-
 group :development, :test do
   gem 'pry-rails'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

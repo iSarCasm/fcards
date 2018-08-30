@@ -16,8 +16,8 @@
 
 .row.mb-4
   .col-sm-4
-    %h4= link_to 'Practice!', new_repeat_session_path(deck: @deck)
-  
+    %h4= link_to 'Practice!', new_repeat_session_path(decks: [@deck])
+
 
 %ol
   - @deck.cards.each do |card|

@@ -1,13 +1,13 @@
 class RepeatSession::Base
-  attr_reader :wrong_answers, :correct_answers, :all_answers, :deck_id, :current_card_pool
-  
-  def initialize(deck: nil, questions: 20, data_hash: nil)
+  attr_reader :wrong_answers, :correct_answers, :all_answers, :deck_ids, :current_card_pool
+
+  def initialize(decks: [], questions: 20, data_hash: nil)
     if data_hash
       init_from_hash(data_hash)
     else
       @wrong_answers = []
       @correct_answers = []
-      @deck_id = deck.id
+      @deck_ids = decks.pluck(:id)
       @all_answers = questions
       init_card_pool
     end
@@ -37,12 +37,12 @@ class RepeatSession::Base
     @current_card_pool << card.id # move to back
   end
 
-  def deck
-    Deck.find(deck_id)
+  def decks
+    Deck.find(deck_ids)
   end
 
   def init_from_hash(data_hash)
-    @deck_id = data_hash['deck_id']
+    @deck_ids = data_hash['deck_ids']
     @all_answers = data_hash['all_answers']
     @wrong_answers = data_hash['wrong_answers'] || []
     @correct_answers = data_hash['correct_answers'] || []
@@ -50,10 +50,10 @@ class RepeatSession::Base
   end
 
   def to_h
-    { 
+    {
       'wrong_answers' => wrong_answers,
       'correct_answers' => correct_answers,
-      'deck_id' => deck_id,
+      'deck_ids' => deck_ids,
       'all_answers' => all_answers,
       'type' => self.class.to_s.split('::').last.downcase,
       'current_card_pool' => current_card_pool
@@ -63,7 +63,7 @@ class RepeatSession::Base
   protected
 
   def init_card_pool
-    @current_card_pool = deck.cards.limit(all_answers).map(&:id)
+    @current_card_pool = Card.where(deck_id: deck_ids).pluck(:id).to_a.first(all_answers)
   end
 
   def card_pool

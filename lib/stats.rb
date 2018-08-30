@@ -18,6 +18,6 @@ class Stats
     days_new_answers.each do |k, v|
       days[k] = [days[k]&.first, v]
     end
-    stats = days.map { |date, counts| StatsDay.new(date, counts.first, counts.second) }.reverse
+    stats = days.map { |date, counts| StatsDay.new(date, counts.first, counts.second) }.sort_by { |x| x.date }.reverse
   end
 end

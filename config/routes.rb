@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'decks#index'
-  
+
   resources :decks, only: [:index, :show, :new, :create] do
     member do
       get :repeat_distributed

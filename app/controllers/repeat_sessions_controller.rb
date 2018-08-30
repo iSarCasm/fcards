@@ -1,10 +1,10 @@
 class RepeatSessionsController < ApplicationController
   def new
-    @deck = deck   
+    @decks = decks
   end
 
   def create
-    repeat_session = RepeatSession.create(session_params[:type], {deck: deck, questions: questions})
+    repeat_session = RepeatSession.create(params[:type], { decks: decks, questions: questions })
     session[:repeat_session] = repeat_session.to_h
     next_card = repeat_session.next_card
     redirect_to repeat_session_card_path(next_card)
@@ -20,15 +20,11 @@ class RepeatSessionsController < ApplicationController
     RepeatSession.from(data_hash: session[:repeat_session])
   end
 
-  def session_params
-    params.permit(:type, :questions, :deck)
-  end
-
-  def deck
-    Deck.find(session_params[:deck])
+  def decks
+    Deck.find(params[:decks])
   end
 
   def questions
-    session_params[:questions].to_i
+    params[:questions].to_i
   end
 end
