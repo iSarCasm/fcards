@@ -20,6 +20,13 @@
 
 
 %ol
-  - @deck.cards.each do |card|
+  - @deck.cards.active.each do |card|
     %li
-      =link_to card.question, deck_card_path(@deck, card)
+      = link_to card.question, deck_card_path(@deck, card)
+
+- if @deck.cards.archived.count > 0
+  %h4 Archived
+  %ol
+    - @deck.cards.archived.each do |card|
+      %li
+        = link_to card.question, deck_card_path(@deck, card)

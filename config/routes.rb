@@ -11,9 +11,9 @@ Rails.application.routes.draw do
 
     resources :cards, only: [:show, :new, :edit, :create, :update] do
       member do
-        get :answer
-        post :right
-        post :wrong
+        get   :answer
+        post  :right
+        post  :wrong
       end
     end
   end
@@ -22,10 +22,16 @@ Rails.application.routes.draw do
     get :finished
     resources :cards, only: [:show, :destroy], controller: 'session_cards' do
       member do
-        get :answer
-        post :right
-        post :wrong
+        get   :answer
+        post  :right
+        post  :wrong
       end
+    end
+  end
+
+  resources :cards_archive, only: [:destroy] do
+    member do
+      post :create
     end
   end
 end

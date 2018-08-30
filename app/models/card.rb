@@ -10,10 +10,14 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  priority     :integer          default(0)
+#  archived     :boolean          default(FALSE)
 #
 
 class Card < ApplicationRecord
   belongs_to :deck, inverse_of: :cards
+
+  scope :active, -> { where archived: false }
+  scope :archived, -> { where archived: true }
 
   def update_wrong
     update(priority: priority / 2)

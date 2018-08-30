@@ -63,7 +63,7 @@ class RepeatSession::Base
   protected
 
   def init_card_pool
-    @current_card_pool = Card.where(deck_id: deck_ids).pluck(:id).to_a.first(all_answers)
+    @current_card_pool = Card.active.where(deck_id: deck_ids).pluck(:id).to_a.first(all_answers)
   end
 
   def card_pool

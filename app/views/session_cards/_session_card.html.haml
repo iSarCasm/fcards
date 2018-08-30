@@ -8,7 +8,7 @@
   .card-body.text-center{style: 'min-height: 125px;'}
     %p.card-text#card-text
       %span#card-answer
-  
+
   .card-footer
     .row
       - if session[:repeat_session]
@@ -18,13 +18,18 @@
           %span{style: 'color: red;'}= wrong_answers_count
           \/
           %span{style: 'color: blue;'}= all_cards_count
-      .col-9.text-center
+      .col-6.text-center
         = link_to 'Show Answer', answer_repeat_session_card_path(card), remote: true, id: 'show-answer', class: 'btn btn-primary'
         %div#card-responses{style: 'display:none;'}
           .inline-block
             = button_to 'Right', { action: :right }, { class: 'btn btn-success' }
           .inline-block
             = button_to 'Wrong', { action: :wrong }, { class: 'btn btn-danger' }
-      .col-3.col-sm.text-right
+      .col-5.col-sm.text-right
         .inline-block
-          = link_to 'Edit', edit_deck_card_path(card.deck, card), class: 'btn btn-secondary', target: 'blank'
+          - if card.archived?
+            = button_to 'Unarchive', cards_archive_path(card), method: :delete, class: 'btn btn-success'
+          - else
+            = button_to 'Archive', cards_archive_path(card), method: :post, class: 'btn btn-warning'
+
+        = link_to 'Edit', edit_deck_card_path(card.deck, card), class: 'btn btn-secondary', target: 'blank'
