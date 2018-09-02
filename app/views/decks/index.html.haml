@@ -1,5 +1,7 @@
 .section.mb-5
-  %h3 Your decks
+  %h3
+    Your decks
+    %small= "(#{Card.count} cards)"
   %ul
     - @decks.each do |deck|
       %li
