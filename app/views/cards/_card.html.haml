@@ -11,13 +11,7 @@
 
   .card-footer
     .row
-      - if session[:repeat_session]
-        .col-sm
-          %span{style: 'color: green;'}= correct_answers_count
-          \/
-          %span{style: 'color: red;'}= wrong_answers_count
-          \/
-          %span{style: 'color: blue;'}= all_cards_count
+      .col-sm
       .col-6.text-center
         = link_to 'Show Answer', answer_deck_card_path(card.deck, card), remote: true, id: 'show-answer', class: 'btn btn-primary'
         %div#card-responses{style: 'display:none;'}

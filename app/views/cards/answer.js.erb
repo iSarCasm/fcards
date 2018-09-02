@@ -1,5 +1,4 @@
 $('#show-answer').hide();
-$('#card-responses').show();
 
 var card_answer = document.getElementById('card-answer');
 card_answer.innerHTML = '<%= escape_javascript @answer.html_safe %>';
