@@ -15,6 +15,12 @@ class CardsController < ApplicationController
     card = deck.cards.new card_params
     card.order_number = deck.cards.order(:order_number).last&.order_number.to_i + 1
     card.save!
+    if params[:is_reverse]
+      reverse_card = deck.cards.new card_params
+      reverse_card.answer, reverse_card.question = reverse_card.question, reverse_card.answer
+      reverse_card.order_number = deck.cards.order(:order_number).last&.order_number.to_i + 1
+      reverse_card.save!
+    end
     redirect_to deck_path(deck)
   end
 

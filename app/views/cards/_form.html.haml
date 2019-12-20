@@ -7,6 +7,9 @@
   .form-group
     = f.label :answer
     = f.text_area :answer, class: 'form-control'
+  .form-group
+    = label_tag :is_reverse
+    = check_box_tag :is_reverse
   = f.submit class: 'btn btn-primary mb-2'
 
 %h3 Preview
