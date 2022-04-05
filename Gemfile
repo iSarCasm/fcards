@@ -7,10 +7,11 @@ end
 
 ruby '2.7.5'
 
-gem 'rails', '~> 5.1.5'
+gem 'rails', '~> 5.1'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.7'
 gem 'uglifier', '>= 1.3.0'
+gem 'sass-rails', '~> 5'
 
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
@@ -25,6 +26,9 @@ gem 'seed_dump'
 group :development, :test do
   gem 'pry-rails'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :development do
